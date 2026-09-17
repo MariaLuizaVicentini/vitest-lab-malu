@@ -1,31 +1,55 @@
 # Setup Tests
 
-Esse é um arquivo de configuracao de testes. 
+`setupTests.ts` é um arquivo de **configuração dos testes**.
 
-Ele existe pra preparar o amabiente antes dos testes serem executados.
+Ele existe pra **preparar o ambiente antes dos testes serem executados**.
 
-No projeto, ele resolve principalmente tres problemas:
-1. Add recursos pra verificar elementos HTML
-2. Cria algumas funcoes que o navegador real possui, mas o ambiente de teste nao possui
-3. Limpa os mocks depois de cada teste
+No projeto, ele resolve principalmente três problemas:
 
-----
-
-jest-dom adiciona verificações que facilitam testar elementos da página.
-- Apesar do nome ter jest, ele pode ser utilizado junto com o Vitest.
+1. Adiciona recursos pra facilitar os testes de elementos HTML.
+2. Cria funções que existem em um navegador real, mas não existem no ambiente de teste.
+3. Limpa os `mocks` depois de cada teste.
 
 ---
 
-### Relembrando conceitos do vitest 
+## `@testing-library/jest-dom`
 
+```ts
+import '@testing-library/jest-dom';
+```
+- `jest-dom` adiciona verificações que facilitam testar elementos HTML.
+
+Por exemplo:
+```ts
+expect(element).toBeInTheDocument();
+```
+
+- `toBeInTheDocument` : permite verificar se um elemento está presente na página
+---
 # funções simuladas `fn()`
+
 ```ts
 const mockFn = vi.fn(implementation?)
 ```
+`vi.fn()` 
+- cria uma função simulada.
+
+Essa função pode ser utilizada para:
+- verificar se uma função foi chamada;
+- verificar quantas vezes foi chamada;
+- verificar quais valores recebeu;
+- definir o que ela deve retornar.
+
 `implementation`
-- Uma function original pra ser executada quando o mockFn for chamado
-- Se omitida, mockF apenas retornar undefined
-- type: function
+- É uma função que define o comportamento que o mockFn terá quando for chamado.
+```ts
+const mockFn = vi.fn(implementation);
+```
+Se a `implementation` nao for informada:
+```ts
+const mockFn = vi.fn();
+```
+- `mockFn` será uma function simulada que, por padrao, retorna undefined
 
 ---
 
