@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "ESNext",
     "target": "esnext",
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
